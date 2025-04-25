@@ -1,65 +1,128 @@
+<div align="center">
+
 # 🧬 CodonScope
 
-A modern, biological web application for DNA sequence analysis and visualization. CodonScope allows users to analyze DNA sequences, visualize codons, identify start/stop codons, translate to amino acids, and calculate GC content with an interactive and educational interface.
+### Advanced DNA Analysis & Visualization Platform
 
-## Features
+[![Next.js](https://img.shields.io/badge/Next.js-15.0-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/React-18.0-61DAFB?style=flat&logo=react)](https://reactjs.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-- 🧪 DNA sequence input with validation (only A, T, G, C allowed)
-- 🎨 Color-coded visualization of DNA bases (A=green, T=red, C=blue, G=yellow)
-- 🔍 Highlighting of start codons (ATG) and stop codons (TAA, TAG, TGA)
-- 🧩 Translation of DNA to amino acids (3-letter code)
-- 📊 GC content calculation and visualization
-- 🔄 Reverse complement display
-- 🧫 Example sequence loading
-- 🌙 Dark mode by default with light mode toggle
+<img src="/public/codonscope-preview.png" alt="CodonScope Preview" width="650px" />
 
-## Technology Stack
+</div>
 
-- **Next.js 15** with App Router
-- **TypeScript** for type safety
-- **TailwindCSS** for styling
-- **shadcn/ui** for UI components
-- **Framer Motion** for animations
-- **Zustand** for state management
+## 📋 Overview
 
-## Target Audience
+CodonScope is a comprehensive bioinformatics web application designed for DNA sequence analysis and visualization. Built with modern web technologies, it provides an interactive and educational interface for biologists, students, and researchers to analyze genetic sequences.
 
-- Laboratory medicine apprentices
-- Biology students
-- Genetics educators
-- Web developers interested in biovisualization
+### ✨ Key Features
 
-## Getting Started
+#### 🧪 Core DNA Analysis
+- **DNA Sequence Validation**: Input sequences with real-time validation (A, T, G, C bases)
+- **Scientific Color Coding**: Industry-standard base coloring (A=green, T=red, C=blue, G=yellow)
+- **Codon Visualization**: Interactive display with grouping options (3, 5, or 10 codons)
+- **Highlight System**: Automatic marking of start codons (ATG) and stop codons (TAA, TAG, TGA)
+- **Reverse Complement**: One-click generation of reverse complementary sequences
 
-First, run the development server:
+#### 🔬 Advanced Bioinformatics Tools
+- **Reading Frame Analysis**: Visualization of all three reading frames with ORF detection
+- **Primer Design Tool**: Automatic primer generation with customizable parameters
+- **Restriction Enzyme Analysis**: Enzyme database, site visualization, and gel electrophoresis simulation
+- **RNA Secondary Structure Prediction**: Interactive circle and mountain plot visualizations
+
+#### 📊 Data Insights
+- **Sequence Statistics**: Nucleotide composition, GC content, codon usage tables
+- **Circular GC Content Chart**: Visual representation of GC distribution
+- **Amino Acid Translation**: Color-coded protein sequence with property annotations
+
+#### 📤 Export Capabilities
+- **Bioinformatics Formats**: FASTA, GenBank exports with proper formatting
+- **Data Formats**: JSON, TXT exports for further processing
+
+## 🔧 Technology Stack
+
+- **Frontend Framework**: Next.js 15 with App Router
+- **Language**: TypeScript for enhanced type safety
+- **Styling**: TailwindCSS with shadcn/ui components
+- **Animation**: Framer Motion for smooth transitions
+- **UI Components**: Custom scientific visualizations
+- **Dependencies**: file-saver for exports
+
+## 👩‍🔬 Target Audience
+
+- **Educational**: Biology students, genetics educators
+- **Professional**: Bioinformaticians, laboratory researchers
+- **Medical**: Laboratory medicine practitioners
+- **Technical**: Developers interested in biological visualization
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18.0 or later
+- npm, yarn, pnpm, or bun
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/codonscope.git
+cd codonscope
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧩 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/             # Next.js app router files
+├── components/      # React components
+│   ├── ui/          # shadcn/ui components
+│   └── ...          # Feature components (CodonVisualization, etc.)
+├── lib/             # Utility functions
+│   ├── dna-utils.ts # DNA processing utilities
+│   └── ...          # Other utilities
+└── ...
+```
 
-## Learn More
+## 📚 Documentation
 
-To learn more about Next.js, take a look at the following resources:
+### DNA Analysis Workflow
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Input DNA Sequence**: Enter or paste a valid DNA sequence 
+2. **Automatic Analysis**: View codons, amino acids, and statistical information
+3. **Advanced Analysis**: Use specialized tabs for deeper analysis:
+   - Reading Frame Analysis for ORF detection
+   - Primer Design for PCR applications
+   - Restriction Analysis for enzyme digestion simulation
+   - RNA Structure for secondary structure prediction
+4. **Export Results**: Save analysis in various formats for documentation or further processing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contributing
 
-## Deploy on Vercel
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📞 Contact
+
+For questions or feedback, please open an issue in the GitHub repository.
+
+---
+
+<div align="center">
+
+**CodonScope** - Advanced DNA Analysis for Everyone
+
+</div>

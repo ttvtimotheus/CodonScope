@@ -86,25 +86,26 @@ export const calculateGCContent = (sequence: string): number => {
   return parseFloat(((gc / sequence.length) * 100).toFixed(2));
 };
 
-// Get color for each DNA base
+// Get color for each DNA base - using scientific, visually pleasing color values
 export const getBaseColor = (base: string): string => {
   switch (base.toUpperCase()) {
-    case 'A': return 'text-green-500';
-    case 'T': return 'text-red-500';
-    case 'C': return 'text-blue-500';
-    case 'G': return 'text-yellow-500';
+    case 'A': return 'text-[#1D7874]'; // Darker, more professional green
+    case 'T': return 'text-[#8B1E3F]'; // Wine red instead of bright red
+    case 'C': return 'text-[#3D348B]'; // Indigo blue instead of bright blue
+    case 'G': return 'text-[#E3B23C]'; // Muted ochre instead of bright yellow
+    case 'U': return 'text-[#8B1E3F]'; // Same as T for RNA
     default: return 'text-gray-400';
   }
 };
 
-// Get background color for each codon
+// Get background color for each codon with improved visibility
 export const getCodonBackground = (codon: string): string => {
   if (isStartCodon(codon)) {
-    return 'bg-green-800/30';
+    return 'bg-[#1D7874]/30 ring-2 ring-[#1D7874]/70';
   } else if (isStopCodon(codon)) {
-    return 'bg-red-800/30';
+    return 'bg-[#8B1E3F]/30 ring-2 ring-[#8B1E3F]/70';
   }
-  return '';
+  return 'bg-gray-900/30';
 };
 
 // Validate DNA sequence (only A, T, G, C allowed)
@@ -112,8 +113,8 @@ export const validateDNA = (sequence: string): boolean => {
   return /^[ATGC]+$/i.test(sequence);
 };
 
-// Split DNA into codons (groups of 3)
-export const splitIntoCodons = (sequence: string): string[] => {
+// Split DNA into codons (groups of 3) with optional grouping
+export const splitIntoCodons = (sequence: string, groupSize: number = 0): Array<string[]> => {
   const codons: string[] = [];
   for (let i = 0; i < sequence.length; i += 3) {
     const codon = sequence.slice(i, i + 3);
@@ -124,24 +125,35 @@ export const splitIntoCodons = (sequence: string): string[] => {
       codons.push(codon.padEnd(3, '-'));
     }
   }
-  return codons;
+  
+  // Group codons for better readability if groupSize > 0
+  if (groupSize > 0) {
+    const groupedCodons: Array<string[]> = [];
+    for (let i = 0; i < codons.length; i += groupSize) {
+      groupedCodons.push(codons.slice(i, i + groupSize));
+    }
+    return groupedCodons;
+  }
+  
+  // Return each codon as its own group if no grouping
+  return codons.map(codon => [codon]);
 };
 
 // Translate DNA sequence to amino acids starting from first ATG until stop codon
 export const translateDNA = (sequence: string): string[] => {
   const upperSeq = sequence.toUpperCase();
-  const codons = splitIntoCodons(upperSeq);
+  const flatCodons = splitIntoCodons(upperSeq).flat();
   
   // Find the first start codon (ATG)
-  const startIndex = codons.findIndex(codon => isStartCodon(codon));
+  const startIndex = flatCodons.findIndex(codon => isStartCodon(codon));
   
   if (startIndex === -1) {
     return []; // No start codon found
   }
   
   const aminoAcids: string[] = [];
-  for (let i = startIndex; i < codons.length; i++) {
-    const codon = codons[i];
+  for (let i = startIndex; i < flatCodons.length; i++) {
+    const codon = flatCodons[i];
     // Handle incomplete codons
     if (codon.includes('-')) {
       break;

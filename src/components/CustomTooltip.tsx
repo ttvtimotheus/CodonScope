@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/tooltip';
 
 interface CustomTooltipProps {
-  content: string;
+  content: React.ReactNode;
   children: React.ReactNode;
 }
 
